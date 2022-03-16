@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_manager/config/app_theme.dart';
 import 'package:task_manager/ui/home_page.dart';
 import 'package:task_manager/ui/home_page_viewmodel.dart';
-import 'package:task_manager/ui/theme/app_dark_theme.dart';
-import 'package:task_manager/ui/theme/app_light_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: appLightTheme,
-      darkTheme: appDarkTheme,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       routes: {
         '/': (_) => ChangeNotifierProvider<TaskListViewModel>(

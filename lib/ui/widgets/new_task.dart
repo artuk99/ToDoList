@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:task_manager/ui/constants/constants.dart';
 import 'package:task_manager/ui/home_page_viewmodel.dart';
 
 class NewTaskWidget extends StatefulWidget {
@@ -25,7 +26,6 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
 
     _keyboardSubscription =
         KeyboardVisibilityController().onChange.listen((bool visible) {
-      // print('Keyboard visibility update. Is visible: $visible');
 
       if (!visible) {
         model.addNewTask(_controller.text);
@@ -51,7 +51,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
           scale: scaleFactor,
           child: Container(
             decoration: BoxDecoration(
-              gradient: isDarkMode ? gradientDarkTheme : gradientLightTheme,
+              gradient: isDarkMode ? UIConstants.checkBoxGradientDarkTheme : UIConstants.checkBoxGradientLightTheme,
               borderRadius: BorderRadius.circular(5 / scaleFactor),
             ),
             child: Checkbox(
@@ -68,7 +68,6 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
           ),
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 24 * scaleFactor),
-        // dense: true,
         title: TextField(
           focusNode: _node,
           controller: _controller,
@@ -86,29 +85,6 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
           ),
         ),
       ),
-      // CheckboxListTile(
-      //   controlAffinity: ListTileControlAffinity.leading,
-      //   contentPadding: EdgeInsets.zero,
-      //   dense: true,
-      //   title: TextField(
-      //     focusNode: _node,
-      //     controller: _controller,
-      //     autofocus: true,
-      //     decoration: InputDecoration(
-      //       hintStyle: GoogleFonts.inter(
-      //         textStyle: TextStyle(
-      //           color:
-      //               Theme.of(context).inputDecorationTheme.hintStyle!.color,
-      //           fontSize: 18,
-      //           fontWeight: FontWeight.w500,
-      //         ),
-      //       ),
-      //       hintText: 'New task',
-      //     ),
-      //   ),
-      //   value: false,
-      //   onChanged: null,
-      // ),
     );
   }
 
@@ -120,21 +96,3 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
     super.dispose();
   }
 }
-
-get gradientDarkTheme => const LinearGradient(
-      begin: Alignment.topRight,
-      end: Alignment.bottomLeft,
-      colors: [
-        Color(0xff2B2D37),
-        Color(0xff262933),
-      ],
-    );
-
-get gradientLightTheme => const LinearGradient(
-      begin: Alignment.topRight,
-      end: Alignment.bottomLeft,
-      colors: [
-        Color(0xffFCFCFC),
-        Color(0xffF8F8F8),
-      ],
-    );

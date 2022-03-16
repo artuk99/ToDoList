@@ -1,6 +1,6 @@
 # task_manager
 
-A new Flutter project.
+![demo.png](./demo.png)
 
 ## Getting Started
 
